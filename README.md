@@ -105,11 +105,43 @@ def sense(p, Z):
     return q/np.sum(q)
         
 print sense(p,Z)
-
-
 ```
 The outcome as expected: [0.11111111 0.33333333 0.33333333 0.11111111 0.11111111]
 
+## Multiple Measurements
+
+To process any sequence of measurements of any length, Instead of z I am going to make a measurement vector called ‘measurement’, which can have multiple measurements then I modify the code so that it updates the probability based on the number of measurements.
 
 
-Multiple Measurements
+```python
+p=[0.2, 0.2, 0.2, 0.2, 0.2]
+world=['green', 'red', 'red', 'green', 'green']
+measurements = ['red', 'green']
+pHit = 0.6
+pMiss = 0.2
+
+def sense(p, Z):
+    q=[]
+    for i in range(len(p)):
+        hit = (Z == world[i])
+        q.append(p[i] * (hit * pHit + (1-hit) * pMiss))
+    s = sum(q)
+    for i in range(len(q)):
+        q[i] = q[i] / s
+    return q
+
+
+for i in range(len(measurements)):
+    p=sense(p,measurements[i])
+print p
+
+```
+
+
+## Exact Motion
+
+In this section, we will still be using the earlier concepts later on and shifting our focus onto what happens to our knowledge of location when our robot starts moving around.
+
+1. Suppose we have a distribution over those cells-- such as below and even though we do not know where the robot is.
+2. The robot moves it moves to the right. In fact, the way we are going to program is we will assume the world is cyclic, so if it drops off the right-most cell it finds itself in the left-most cell. 
+3. Suppose we know the world moved exactly 1 grid cell to the right, including the cyclic motion. After that motion, all these 5 values (the posterior probability) like as step 3 in the following figure.

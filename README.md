@@ -1,4 +1,13 @@
-# Introduction of Localization
+contents:
+1. Introduction of Localization
+2. Localization
+3. Multiple Measurements
+4. Exact Motion
+5. Inexact Motion
+6. Sense and Move
+
+
+## 1. Introduction of Localization
  Localization answers a question, where is a car or robot in a given map with a high accuracy.
 
 Now assume:
@@ -31,11 +40,11 @@ Summarize of localization:
 
 * On-board sensors are used to estimate the transformation between local measurements and a given map. 
 
-## Localization
+## 2. Localization
 
 The question is, how can a car know where it is with an accuracy of 10 cm? That is the localization question, which plays a key role. Localization has a lot of math, but before diving into mathematical detail, I want to give you an intuition for the basic principles. 
 
-#### * Uniform Distribution: prior
+#### Uniform Distribution: prior
 You can think of a world with 5 different cells or places where each cell has the same probability that the robot might be in that cell. So probabilities add up to 1. 
 
 
@@ -55,7 +64,7 @@ print p
 
 As the robot continues to get more and more uncertain about where it is, eventually it will reach the state of maximal uncertainty: the uniform distribution. The uniform distribution is the most uncertain that the robot can possibly be. If it moves, that won't help our robot learn anything about it's position 
 
-#### * Probability after Sense:
+#### Probability after Sense:
 Let's look at the measurement of this robot in its world with 5 different grid cells (x1-x5). Assume 2 of those cells are colored red whereas the other three are green. As before, we assign uniform probability to each cell of 0.2 and our robot is now allowed to sense. What it sees is a red color. 
 
 <p align="right"> <img src="./img/5.jpg" style="right;" alt=" •	Probability after Sense" width="600" height="400"> </p> 
@@ -73,7 +82,7 @@ If we look at the ratio of those, then it seems about 3 times as likely to be in
 You may notice that the probabilities do not add up to one(the probability distribution always have add up to one), which should be fixed by learning about renormalization.
 
 
-#### * Normalize Distribution: posterior
+#### Normalize Distribution: posterior
 
 After multiplying, the sum of the resulting probabilities is 0.36, which is less than one. It looks like we will need to figure out a way to make sure these probabilities actually add up to one. We turn this back into a probability distribution, by dividing each of these numbers by 0.36. 
 
@@ -111,7 +120,7 @@ print sense(p,Z)
 ```
 The outcome as expected: [0.11111111 0.33333333 0.33333333 0.11111111 0.11111111]
 
-## Multiple Measurements
+## 3. Multiple Measurements
 
 To process any sequence of measurements of any length, Instead of z I am going to make a measurement vector called ‘measurement’, which can have multiple measurements then I modify the code so that it updates the probability based on the number of measurements.
 
@@ -141,7 +150,7 @@ print p
 ```
 
 
-## Exact Motion
+## 4. Exact Motion
 
 In this section, we will still be using the earlier concepts later on and shifting our focus onto what happens to our knowledge of location when our robot starts moving around.
 
@@ -168,7 +177,7 @@ print move(p, -1)
 ```
 the expected value: [1, 0, 0, 0, 0]
 
-## Inexact Motion
+## 5. Inexact Motion
 
 In this section we are going to talk about inaccurate robot motion. It is really important to model Inexact Motion,because this is the primary reason why localization is hard, because robots are not very accurate and attempts to go U grid cells, but occasionally falls short of its goal or overshoots. For example we are again given 5 grid cells and a robot executes its action(Say U = 2) with high probability correctly, say 0.8, but with 0.1 chance it finds itself short of the intended action and  another 0.1 probability it finds itself overshooting its target.
 
@@ -236,7 +245,7 @@ for i in range(n):
     p=move(p, 1)
 print(p)
 ```
-## Sense and Move
+## 7. Sense and Move
 
 We talked about measurement updates, and  motion. We called these two routines "sense" and "move." and localization is nothing else but the iteration of "sense" and "move." .There is an initial belief that is tossed into this loop if you. 
 If you sense first.

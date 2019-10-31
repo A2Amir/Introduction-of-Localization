@@ -169,4 +169,66 @@ print move(p, -1)
 ```
 the expected value: [1, 0, 0, 0, 0]
 
+## Inexact Motion
+
+In this section we are going to talk about inaccurate robot motion. It is really important to model Inexact Motion,because this is the primary reason why localization is hard, because robots are not very accurate and attempts to go U grid cells, but occasionally falls short of its goal or overshoots. For example we are again given 5 grid cells and a robot executes its action(Say U = 2) with high probability correctly, say 0.8, but with 0.1 chance it finds itself short of the intended action and  another 0.1 probability it finds itself overshooting its target.
+
+<p align="right"> <img src="./img/10.jpg" style="right;" alt="  ut inaccurate robot motion" width="600" height="400"> </p> 
+
+
+First, we're now going to look at the mathematical side by an example:
+
+A prior distribution like below is given and we're going to be using the value of U = 2.For the motion model that shifts the robot exactly 2 steps:
+
+* We believe there is a 0.8 chance that  the robot will be in the correct place
+* We assign a 0.1 to the cases where the robot over or under shoots for the motion model that shifts the robot exactly 2 steps
+
+
+
+<p align="right"> <img src="./img/11.jpg" style="right;" alt="  an example of  inaccurate robot motion" width="600" height="400"> </p> 
+
+As seen, this motion has added some uncertainty to the robot's position:
+
+
+<p align="right"> <img src="./img/12.jpg" style="right;" alt="  added some uncertainty to the robot's position" width="600" height="400"> </p> 
+
+To modify the move procedure to accommodate these extra probabilities (pExact of 0.8, pOvershoot of 0.1, and pUndershoot of 0.1 )I am going to to add  them into the move function.
+
+```python
+p=[0, 1, 0, 0, 0]
+world=['green', 'red', 'red', 'green', 'green']
+measurements = ['red', 'green']
+pHit = 0.6
+pMiss = 0.2
+pExact = 0.8
+pOvershoot = 0.1
+pUndershoot = 0.1
+
+def sense(p, Z):
+    q=[]
+    for i in range(len(p)):
+        hit = (Z == world[i])
+        q.append(p[i] * (hit * pHit + (1-hit) * pMiss))
+    s = sum(q)
+    for i in range(len(q)):
+        q[i] = q[i] / s
+    return q
+
+def move(p, U):
+    q = []
+    for i in range(len(p)):
+        s=pExact*(p[(i-U) % len(p)])
+        s=s+pOvershoot*(p[(i-U-1) % len(p)])
+        s=s+pUndershoot*(p[(i-U+1) % len(p)])
+        q.append(s)
+    return q
+    
+
+print move(p, 2)
+```
+
+The expected values: [0.0, 0.0, 0.1, 0.8, 0.1]
+
+By multiply the p value as before for the exact set off by pExact then we add to it two more multiplied by pOvershoot or pUndershoot where we are overshooting by going yet 1 step further than U or undershooting by cutting it short by 1. Then we add these things up and finally append the sum of those to our output probability q. 
+
 

@@ -13,11 +13,11 @@ In a traditional way, we use global navigation satellite systems to find the car
 It is common practice to use the onboard sensor data (like RADAR and LIDAR), along with our global map, to solve the localization issue. With the onboard sensors it is possible to measure distances to static obstacles, like trees, poles, or walls.We measure these distances, and the bearing of these static objects in the local coordinate system of our car. 
 
 
-  <img src="./img/2.jpg" alt=" a local coordinate system of our cart" style="width: 400px;" align="right">
+  <img src="./img/2.jpg" alt=" a local coordinate system of our cart" style="width: 400px;" >
 
 Now when you are lucky, the same obstacles that were observed by the on-board sensors are also part of the map. Of course, the map has its own global coordinate system. 
 
-  <img src="./img/3.jpg" alt=" a global coordinate system" style="width: 400px;" align="right">
+  <img src="./img/3.jpg" alt=" a global coordinate system" style="width: 400px;" >
 
 To estimate where the car is in the map, you have to match the observations with the map information and when you do it correctly, this results in a transformation between both coordinate systems (the local car coordinate system and the global coordinate system of the map). This transformation should be as accurate as possible-- let's say within a range of 10 centimetres 
 

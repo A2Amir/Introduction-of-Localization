@@ -7,7 +7,7 @@ contents:
 6. Sense and Move
 
 
-## Introduction of Localization
+## 1. Introduction of Localization
  Localization answers a question, where is a car or robot in a given map with a high accuracy.
 
 Now assume:

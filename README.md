@@ -290,6 +290,4 @@ print (p)
 
 ```
 
-The result values : [0.21, 0.15, 0.08, 0.16, 0.38]
-
-As seen, the robot saw green correctly, moved right again It now finds itself most likely in the right-most cell (the third cell). This is just looking at result values.
+The result values : [0.21, 0.15, 0.08, 0.16, 0.38] As seen, the robot saw green correctly, moved right again It now finds itself most likely in the right-most cell (the third cell). This is just looking at result values.

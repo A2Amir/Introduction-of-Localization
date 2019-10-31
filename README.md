@@ -6,7 +6,7 @@ Now assume:
 * There is a car that is totally lost, which means you, as a driver or as a car, have no clue where you are. 
 * You have a global map of the environment.
 
-  <img src="./img/1.jpg" alt="  a global map of the environment" style="width: 300px;" align="right">
+  <img src="./img/1.jpg" alt="  a global map of the environment"  align="right">
 
 In a traditional way, we use global navigation satellite systems to find the car, with respect to the map. But GPS is not precise enough most of the time and has an accuracy about one to three meters and sometimes it can be as broad as 10 to 50 meters. Clearly this is not reliable enough for a self-driving car. You can't trust GPS and you have to find another technique to localize yourself inside a given map. 
 

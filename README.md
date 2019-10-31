@@ -53,8 +53,7 @@ for i in range(n):
 print p
 ```
 
-
-The uniform distribution is the most uncertain that the robot can possibly be. If it moves, that won't help our robot learn anything about it's position
+As the robot continues to get more and more uncertain about where it is, eventually it will reach the state of maximal uncertainty: the uniform distribution. The uniform distribution is the most uncertain that the robot can possibly be. If it moves, that won't help our robot learn anything about it's position 
 
 #### * Probability after Sense:
 Let's look at the measurement of this robot in its world with 5 different grid cells (x1-x5). Assume 2 of those cells are colored red whereas the other three are green. As before, we assign uniform probability to each cell of 0.2 and our robot is now allowed to sense. What it sees is a red color. 
@@ -224,11 +223,18 @@ def move(p, U):
     return q
     
 
-print move(p, 2)
+print (move(p, 2))
 ```
 
 The expected values: [0.0, 0.0, 0.1, 0.8, 0.1]
 
 By multiply the p value as before for the exact set off by pExact then we add to it two more multiplied by pOvershoot or pUndershoot where we are overshooting by going yet 1 step further than U or undershooting by cutting it short by 1. Then we add these things up and finally append the sum of those to our output probability q. 
+
+To move the robot as much time we want and print out the resulting distribution with the initial distribution p = [0, 1, 0, 0, 0]:
+```python
+for i in range(n):
+    p=move(p, 1)
+print(p)
+```
 
 

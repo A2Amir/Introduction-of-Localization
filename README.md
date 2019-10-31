@@ -7,15 +7,13 @@ Now assume:
 * You have a global map of the environment.
 
 
-<p align="right"> <img src="./img/1.jpg" style="right;" alt="" width="600" height="300"> </p> 
+<p align="right"> <img src="./img/1.jpg" style="right;" alt="" width="600" height="400"> </p> 
 
 In a traditional way, we use global navigation satellite systems to find the car, with respect to the map. But GPS is not precise enough most of the time and has an accuracy about one to three meters and sometimes it can be as broad as 10 to 50 meters. Clearly this is not reliable enough for a self-driving car. You can't trust GPS and you have to find another technique to localize yourself inside a given map. 
 
 It is common practice to use the onboard sensor data (like RADAR and LIDAR), along with our global map, to solve the localization issue. With the onboard sensors it is possible to measure distances to static obstacles, like trees, poles, or walls.We measure these distances, and the bearing of these static objects in the local coordinate system of our car. 
 
-<p align="right">
-  <img src="./img/2.jpg" alt=" a local coordinate system of our cart" style="width: 200px;" >
-</P>
+<p align="right"> <img src="./img/2.jpg" style="right;" alt=" a local coordinate system of our car" width="600" height="400"> </p> 
 
 Now when you are lucky, the same obstacles that were observed by the on-board sensors are also part of the map. Of course, the map has its own global coordinate system. 
 

@@ -17,9 +17,8 @@ It is common practice to use the onboard sensor data (like RADAR and LIDAR), alo
 
 Now when you are lucky, the same obstacles that were observed by the on-board sensors are also part of the map. Of course, the map has its own global coordinate system. 
 
-<p align="right">
-  <img src="./img/3.jpg" alt=" a global coordinate system" style="width: 300px;" >
-</P>
+<p align="right"> <img src="./img/3.jpg" style="right;" alt=" a global coordinate system" width="600" height="400"> </p> 
+
 To estimate where the car is in the map, you have to match the observations with the map information and when you do it correctly, this results in a transformation between both coordinate systems (the local car coordinate system and the global coordinate system of the map). This transformation should be as accurate as possible-- let's say within a range of 10 centimetres 
 
 

@@ -145,3 +145,24 @@ In this section, we will still be using the earlier concepts later on and shifti
 1. Suppose we have a distribution over those cells-- such as below and even though we do not know where the robot is.
 2. The robot moves it moves to the right. In fact, the way we are going to program is we will assume the world is cyclic, so if it drops off the right-most cell it finds itself in the left-most cell. 
 3. Suppose we know the world moved exactly 1 grid cell to the right, including the cyclic motion. After that motion, all these 5 values (the posterior probability) like as step 3 in the following figure.
+
+
+<p align="right"> <img src="./img/9.jpg" style="right;" alt="  Exact Motion" width="300" height="200"> </p> 
+
+To program this I defined a function "move" with an input distribution p and a motion number "U" where U is the number of grid cells that the robot is moving to the right or to the left and returns the new distribution Q after the move where if U equals zero, Q is the same as p. If U equals 1, all the values are cyclically shifted to the right by 1.If U equals 3, they are cyclically shifted to the right by 3. If U equals -1, they are cyclically shifted to the left.
+
+
+```python
+p=[0, 1, 0, 0, 0]
+def move(p, U):
+    q=[]
+    for i in range(len(p)):
+        q.append(p[i-U%len(p)])
+    return q
+
+print move(p, -1)
+
+```
+the expected value: [1, 0, 0, 0, 0]
+
+

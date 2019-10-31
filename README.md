@@ -147,7 +147,7 @@ In this section, we will still be using the earlier concepts later on and shifti
 3. Suppose we know the world moved exactly 1 grid cell to the right, including the cyclic motion. After that motion, all these 5 values (the posterior probability) like as step 3 in the following figure.
 
 
-<p align="right"> <img src="./img/9.jpg" style="right;" alt="  Exact Motion" width="300" height="200"> </p> 
+<p align="right"> <img src="./img/9.jpg" style="right;" alt="  Exact Motion" width="600" height="400"> </p> 
 
 To program this I defined a function "move" with an input distribution p and a motion number "U" where U is the number of grid cells that the robot is moving to the right or to the left and returns the new distribution Q after the move where if U equals zero, Q is the same as p. If U equals 1, all the values are cyclically shifted to the right by 1.If U equals 3, they are cyclically shifted to the right by 3. If U equals -1, they are cyclically shifted to the left.
 

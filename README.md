@@ -52,6 +52,10 @@ for i in range(n):
 
 print p
 ```
+
+
+The uniform distribution is the most uncertain that the robot can possibly be. If it moves, that won't help our robot learn anything about it's position
+
 #### * Probability after Sense:
 Let's look at the measurement of this robot in its world with 5 different grid cells (x1-x5). Assume 2 of those cells are colored red whereas the other three are green. As before, we assign uniform probability to each cell of 0.2 and our robot is now allowed to sense. What it sees is a red color. 
 

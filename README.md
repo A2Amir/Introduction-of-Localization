@@ -40,7 +40,7 @@ Summarize of localization:
 
 * On-board sensors are used to estimate the transformation between local measurements and a given map. 
 
-## Localization
+## 2. Localization
 
 The question is, how can a car know where it is with an accuracy of 10 cm? That is the localization question, which plays a key role. Localization has a lot of math, but before diving into mathematical detail, I want to give you an intuition for the basic principles. 
 
@@ -120,7 +120,7 @@ print sense(p,Z)
 ```
 The outcome as expected: [0.11111111 0.33333333 0.33333333 0.11111111 0.11111111]
 
-## Multiple Measurements
+## 3. Multiple Measurements
 
 To process any sequence of measurements of any length, Instead of z I am going to make a measurement vector called ‘measurement’, which can have multiple measurements then I modify the code so that it updates the probability based on the number of measurements.
 
@@ -150,7 +150,7 @@ print p
 ```
 
 
-## Exact Motion
+## 4. Exact Motion
 
 In this section, we will still be using the earlier concepts later on and shifting our focus onto what happens to our knowledge of location when our robot starts moving around.
 
@@ -177,7 +177,7 @@ print move(p, -1)
 ```
 the expected value: [1, 0, 0, 0, 0]
 
-## Inexact Motion
+## 5. Inexact Motion
 
 In this section we are going to talk about inaccurate robot motion. It is really important to model Inexact Motion,because this is the primary reason why localization is hard, because robots are not very accurate and attempts to go U grid cells, but occasionally falls short of its goal or overshoots. For example we are again given 5 grid cells and a robot executes its action(Say U = 2) with high probability correctly, say 0.8, but with 0.1 chance it finds itself short of the intended action and  another 0.1 probability it finds itself overshooting its target.
 
@@ -245,7 +245,7 @@ for i in range(n):
     p=move(p, 1)
 print(p)
 ```
-## Sense and Move
+## 7. Sense and Move
 
 We talked about measurement updates, and  motion. We called these two routines "sense" and "move." and localization is nothing else but the iteration of "sense" and "move." .There is an initial belief that is tossed into this loop if you. 
 If you sense first.

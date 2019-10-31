@@ -70,3 +70,46 @@ If we look at the ratio of those, then it seems about 3 times as likely to be in
 You may notice that the probabilities do not add up to one(the probability distribution always have add up to one), which should be fixed by learning about renormalization.
 
 
+#### * Normalize Distribution: posterior
+
+After multiplying, the sum of the resulting probabilities is 0.36, which is less than one. It looks like we will need to figure out a way to make sure these probabilities actually add up to one. We turn this back into a probability distribution, by dividing each of these numbers by 0.36. 
+
+
+<p align="right"> <img src="./img/7.jpg" style="right;" alt=" posterior" width="600" height="400"> </p> 
+
+This is a probability distribution, which is often written in the following way ( The probability of each cell, i where i could range from 1-5, after we've seen our measurement Z).
+
+<p align="right"> <img src="./img/8.jpg" style="right;" alt="  a probability distribution" width="300" height="200"> </p> 
+
+The probabilist would also call it posterior distribution of place xi given measurement Z. The entire algorithm explained above can be implemented with the below python codes :
+
+* A variable called "world," for each of the 5 grid cells specifies the color of the cell
+
+* Z to define the measurement to be red
+
+* "sense" define a function, which is the measurement update and which takes as input the initial distribution p and the measurement Z and all the other global variables.
+
+* "sense" outputs a normalized distribution called "Q" in which Q reflects the normalized product of our input probability and the corresponding pHit or pMiss in accordance to whether these colors.
+
+```python
+p=[0.2, 0.2, 0.2, 0.2, 0.2]
+world=['green', 'red', 'red', 'green', 'green']
+Z = 'red'
+pHit = 0.6
+pMiss = 0.2
+def sense(p, Z):
+    q=[]
+    for i in range(len(p)):
+        hit = (Z == world[i])
+        q.append(p[i] * (hit * pHit + (1-hit) * pMiss))
+    return q/np.sum(q)
+        
+print sense(p,Z)
+
+
+```
+The outcome as expected: [0.11111111 0.33333333 0.33333333 0.11111111 0.11111111]
+
+
+
+Multiple Measurements

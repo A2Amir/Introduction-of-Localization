@@ -223,11 +223,18 @@ def move(p, U):
     return q
     
 
-print move(p, 2)
+print (move(p, 2))
 ```
 
 The expected values: [0.0, 0.0, 0.1, 0.8, 0.1]
 
 By multiply the p value as before for the exact set off by pExact then we add to it two more multiplied by pOvershoot or pUndershoot where we are overshooting by going yet 1 step further than U or undershooting by cutting it short by 1. Then we add these things up and finally append the sum of those to our output probability q. 
+
+To move the robot as much time we want and print out the resulting distribution with the initial distribution p = [0, 1, 0, 0, 0]:
+```python
+for i in range(n):
+    p=move(p, 1)
+print(p)
+```
 
 

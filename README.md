@@ -7,7 +7,7 @@ Now assume:
 * You have a global map of the environment.
 
 
-<p> <img src="./img/1.jpg" style="float: right;" alt="" width="180" height="123"> </p> 
+<p> <img src="./img/1.jpg" style="float: left;" alt="" width="200" height="200"> </p> 
 
 In a traditional way, we use global navigation satellite systems to find the car, with respect to the map. But GPS is not precise enough most of the time and has an accuracy about one to three meters and sometimes it can be as broad as 10 to 50 meters. Clearly this is not reliable enough for a self-driving car. You can't trust GPS and you have to find another technique to localize yourself inside a given map. 
 

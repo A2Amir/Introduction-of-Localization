@@ -323,6 +323,23 @@ will lead to something called "Bayes Rule.". It's the most fundamental considera
 <p align="right"> <img src="./img/15.jpg" style="right;" alt=" Bayes Rule" width="600" height="400"> </p> 
 
 The product of the prior of the grid cell times the measurement probability, which was large if the measurement corresponded to the correct color and small if it corresponded to a false color. That product gave us the non-normalized posterior distribution for the grid cell. The normalization is now the constant p(Z).  p(Z) is the sum over all the product of the prior of the grid cell times the measurement probability.
-<p align="right"> <img src="./img/16.jpg" style="right;" alt="  p(Z) is the sum over all" width="300" height="200"> </p> 
+<p align="right"> <img src="./img/16.jpg" style="right;" alt="  p(Z) is the sum over all" width="500" height="200"> </p> 
+
+Put differently:
+ 
+The p with a bar called the non-normalized probability:
+
+<p align="right"> <img src="./img/16.jpg" style="right;" alt="  the non-normalized probability" width="500" height="200"> </p> 
+
+To compute the normalizer, which called "α" all of the non-normalized probabilities should be added.
+
+<p align="right"> <img src="./img/17.jpg" style="right;" alt=" the normalizer" width="500" height="200"> </p> 
+
+The resulting probability will be:
+
+<p align="right"> <img src="./img/18.jpg" style="right;" alt=" The resulting probability" width="500" height="200"> </p> 
+
+
+
 
 

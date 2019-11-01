@@ -321,7 +321,7 @@ I want to go over the formal definition of localization:
 
 **1. The measurement update function or sense:**
 
-will lead to something called "Bayes Rule.". It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out Bayes Rule which looks like below
+will lead to something called **Bayes Rule**. It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out Bayes Rule which looks like below
 
 <p align="right"> <img src="./img/15.jpg" style="right;" alt=" Bayes Rule" width="600" height="400"> </p> 
 

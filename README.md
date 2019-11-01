@@ -250,20 +250,20 @@ print(p)
 
 ## 6. Sense and Move
 
-We talked about measurement updates, and  motion. We called these two routines "sense" and "move." and localization is nothing else but the iteration of "sense" and "move." .There is an initial belief that is tossed into this loop if you. 
-If you sense first.
+We talked about measurement updates, and  motion. We called these two routines "sense" and "move". Localization is nothing else but the iteration of "sense" and "move." .There is an initial belief that is tossed into this loop if you sense first.
 
 <p align="right"> <img src="./img/13.jpg" style="right;" alt="  two routines "sense" and "move" width="600" height="400"> </p> 
 
 Every time the robot moves, it loses information as to where it is. That is because robot motion is inaccurate. Every time it senses it gains information. That is manifest by the fact that after motion, the probability distribution is a little bit flatter and a bit more spread out and after sensing, it's focused a little bit more.
 
-There is a measure of information called "entropy.", which will decrease after the measurement update (sense) step and that entropy will increase after the movement step (move). In general, entropy represents the amount of uncertainty in a system. Since the measurement update step decreases uncertainty, entropy will decrease. The movement step increases uncertainty, so entropy will increase after this step.
+There is a measure of information called "entropy.", which will decrease after the measurement update (sense) step and after the movement step (move) entropy will increase . In general, entropy represents the amount of uncertainty in a system. Since the measurement update step decreases uncertainty, entropy will decrease. The movement step increases uncertainty, so entropy will increase after this step.
 
 Look at our current example where the robot could be at one of five different positions. The maximum uncertainty occurs when all positions have equal probabilities: [0.2, 0.2, 0.2, 0.2, ,0.2]
 
 Following the formula Entropy=Σ(−p×log(p))  we get −5×(.2)×log(0.2)=0.699 
 
 Taking a measurement will decrease uncertainty and entropy. Let's say after taking a measurement, the probabilities become [0.05,0.05,0.05,0.8,0.05]. Now we have a more certain guess as to where the robot is located and our entropy has decreased to 0.338.
+
 In addition two measurement we had before, I am going to give to motion=[1,1] which means the robot moves right and then right again, compute the posterior distribution if the robot first senses red, then moves right one, then senses green, then moves right again.
 
 ```python
@@ -302,25 +302,26 @@ print (p)
 
 ```
 
-The result values : [0.21, 0.15, 0.08, 0.16, 0.38] As seen, the robot saw green correctly, moved right again It now finds itself most likely in the right-most cell (the fifth cell). This is just looking at result values.
+As seen int the result values : [0.21, 0.15, 0.08, 0.16, 0.38]  the robot saw green correctly, moved right again It now finds itself most likely in the right-most cell (the fifth cell). This is just looking at result values.
 
 
 ## 6. Localization Summary
 
 We learned that localization maintains a function over all possible places where a road might be, where each cell has an associated probability value.
 
-The measurement update function, or "sense," is nothing else but a product in which we take those probability values and multiply them up or down depending on the exact measurement. 
-Because the product might violate the fact that probabilities add up to 1, there was a product followed by normalization. 
+The measurement update function, or "sense," is nothing else but a product in which we take those probability values and multiply them up or down depending on the exact measurement.Because the product might violate the fact that probabilities add up to 1, there was a product followed by normalization. 
 
-Motion was a convolution. for each possible location after the motion, we reverse engineered the situation and guessed where the world might have come from and then added the corresponding probabilities. Something as simple as multiplication and addition solves all of localization.
+Motion was a convolution. for each possible location after the motion, we reverse engineered the situation and guessed where the world might have come from and then added the corresponding probabilities. 
+
+**Something as simple as multiplication and addition solves all of localization.**
 
 <p align="right"> <img src="./img/14.jpg" style="right;" alt=" Localization Summary" width="600" height="400"> </p> 
 
 I want to go over the formal definition of localization:
 
-**1. The measurement update function or "sense:**
+**1. The measurement update function or sense:**
 
-will lead to something called "Bayes Rule.". It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out that Bayes Rule looks like below
+will lead to something called "Bayes Rule.". It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out Bayes Rule which looks like below
 
 <p align="right"> <img src="./img/15.jpg" style="right;" alt=" Bayes Rule" width="600" height="400"> </p> 
 
@@ -343,9 +344,9 @@ The resulting probability will be:
 
 
 
-**2. Theorem of Total Probability or motion:**
+**2. The motion function or move:**
 
-look at motion, which will turn out to be something we will call total probability. You remember that we cared about a grid cell "xi" and we asked what is the chance of being in xi after robot motion?  To indicate the after and before, a time index is added (T up X, is an index for time).
+look at motion, which will turn out to be something we will call **total probability**. You remember that we cared about a grid cell "xi" and we asked what is the chance of being in xi after robot motion?  To indicate after and before, a time index is added (T up X, is an index for time).
 
 The way we find the posterior probability for xi is to go through all possible places from which it could have come, all the different j's. Look at the prior probabilities, multiply it by the probability that I transition from j to i given my motion command, which in this case is go 1 to the right side. 
 

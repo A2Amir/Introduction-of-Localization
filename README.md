@@ -316,7 +316,7 @@ Motion was a convolution. for each possible location after the motion, we revers
 
 I want to go over the formal definition of localization:
 
-1. The measurement update function, or "sense:
+**1. The measurement update function, or "sense:**
 
 will lead to something called "Bayes Rule.". It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out that Bayes Rule looks like below
 

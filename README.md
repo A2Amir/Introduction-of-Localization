@@ -5,6 +5,7 @@ contents:
 4. Exact Motion
 5. Inexact Motion
 6. Sense and Move
+7. Localization Summary
 
 
 ## 1. Introduction of Localization
@@ -245,7 +246,7 @@ for i in range(n):
     p=move(p, 1)
 print(p)
 ```
-## 7. Sense and Move
+## 6. Sense and Move
 
 We talked about measurement updates, and  motion. We called these two routines "sense" and "move." and localization is nothing else but the iteration of "sense" and "move." .There is an initial belief that is tossed into this loop if you. 
 If you sense first.
@@ -300,3 +301,25 @@ print (p)
 ```
 
 The result values : [0.21, 0.15, 0.08, 0.16, 0.38] As seen, the robot saw green correctly, moved right again It now finds itself most likely in the right-most cell (the fifth cell). This is just looking at result values.
+
+
+## 6. Localization Summary
+
+We learned that localization maintains a function over all possible places where a road might be, where each cell has an associated probability value.
+
+The measurement update function, or "sense," is nothing else but a product in which we take those probability values and multiply them up or down depending on the exact measurement. 
+Because the product might violate the fact that probabilities add up to 1, there was a product followed by normalization. 
+
+Motion was a convolution. for each possible location after the motion, we reverse engineered the situation and guessed where the world might have come from and then added the corresponding probabilities. Something as simple as multiplication and addition solves all of localization.
+
+<p align="right"> <img src="./img/14.jpg" style="right;" alt=" Localization Summary" width="600" height="400"> </p> 
+
+I want to go over the formal definition of localization:
+
+* The measurement update function, or "sense:
+
+will lead to something called "Bayes Rule.". It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out that Bayes Rule looks like below
+
+<p align="right"> <img src="./img/15.jpg" style="right;" alt=" Bayes Rule" width="600" height="400"> </p> 
+
+

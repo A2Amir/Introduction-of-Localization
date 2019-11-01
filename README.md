@@ -329,15 +329,15 @@ Put differently:
  
 The p with a bar called the non-normalized probability:
 
-<p align="right"> <img src="./img/16.jpg" style="right;" alt="  the non-normalized probability" width="500" height="200"> </p> 
+<p align="right"> <img src="./img/17.jpg" style="right;" alt="  the non-normalized probability" width="500" height="200"> </p> 
 
 To compute the normalizer, which called "α" all of the non-normalized probabilities should be added.
 
-<p align="right"> <img src="./img/17.jpg" style="right;" alt=" the normalizer" width="500" height="200"> </p> 
+<p align="right"> <img src="./img/18.jpg" style="right;" alt=" the normalizer" width="500" height="200"> </p> 
 
 The resulting probability will be:
 
-<p align="right"> <img src="./img/18.jpg" style="right;" alt=" The resulting probability" width="500" height="200"> </p> 
+<p align="right"> <img src="./img/19.jpg" style="right;" alt=" The resulting probability" width="500" height="200"> </p> 
 
 
 

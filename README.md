@@ -32,7 +32,7 @@ Now when you are lucky, the same obstacles that were observed by the on-board se
 To estimate where the car is in the map, you have to match the observations with the map information and when you do it correctly, this results in a transformation between both coordinate systems (the local car coordinate system and the global coordinate system of the map). This transformation should be as accurate as possible-- let's say within a range of 10 centimetres 
 
 
-Summarize of localization:
+Summarize of Introduction:
 
 * Localization answers a question, where is a car in a given map with a high accuracy and high accuracy means between three and 10 centimetres. 
 

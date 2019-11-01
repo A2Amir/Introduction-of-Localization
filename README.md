@@ -341,7 +341,7 @@ The resulting probability will be:
 
 
 
-**2. Theorem of Total Probability or motion **
+**2. Theorem of Total Probability or motion:**
 
 look at motion, which will turn out to be something we will call total probability. You remember that we cared about a grid cell "xi" and we asked what is the chance of being in xi after robot motion?  To indicate the after and before, a time index is added (T up X, is an index for time).
 

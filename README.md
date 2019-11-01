@@ -43,7 +43,7 @@ Summarize of Introduction:
 
 ## 2. Localization
 
-The question is, how can a car know where it is with an accuracy of 10 cm? That is the localization question, which plays a key role. Localization has a lot of math, but before diving into mathematical detail, I want to give you an intuition for the basic principles. 
+The question is, how can a car know where it is with an accuracy of 10 cm? That is the localization question, which plays a key role. Localization has a lot of math, but before diving into mathematical details, I want to give you an intuition of the basic principles. 
 
 #### Uniform Distribution: prior
 You can think of a world with 5 different cells or places where each cell has the same probability that the robot might be in that cell. So probabilities add up to 1. 
@@ -72,7 +72,7 @@ Let's look at the measurement of this robot in its world with 5 different grid c
 
 **How will this affect my belief over different places?**
 
-Obviously, the one's for x2 and x3 should go up and the ones for x1, x4, and x5 should go down. To tell you how to incorporate this measurement into our belief with a very simple rule(a product). Any cell where the color is correct (red cell) we multiply it with a relatively large number (say, 0.6) whereas all the green cells will be multiplied with 0.2.
+Obviously, the one's for x2 and x3 should go up and the ones for x1, x4, and x5 should go down. This measurement(seeing red color) incorporates into our belief with a very simple rule(a product). Any cell where the color is correct (red cell) we multiply it with a relatively large number (say, 0.6) whereas all the green cells will be multiplied with 0.2.
 
 If we look at the ratio of those, then it seems about 3 times as likely to be in a red cell than it is to be in a green cell, because 0.6 is 3 times larger than 0.2. After multiplying, result would be like below:
 

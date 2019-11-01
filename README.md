@@ -63,7 +63,7 @@ for i in range(n):
 print p
 ```
 
-As the robot continues to get more and more uncertain about where it is, eventually it will reach the state of maximal uncertainty: the uniform distribution. The uniform distribution is the most uncertain that the robot can possibly be. If it moves, that won't help our robot learn anything about it's position 
+The uniform distribution is the most uncertain that the robot can possibly be. If it moves, that won't help our robot learn anything about it's position .
 
 #### Probability after Sense:
 Let's look at the measurement of this robot in its world with 5 different grid cells (x1-x5). Assume 2 of those cells are colored red whereas the other three are green. As before, we assign uniform probability to each cell of 0.2 and our robot is now allowed to sense. What it sees is a red color. 
@@ -80,12 +80,12 @@ If we look at the ratio of those, then it seems about 3 times as likely to be in
 <p align="right"> <img src="./img/6.jpg" style="right;" alt=" affected  belief over different places" width="600" height="400"> </p> 
 
 
-You may notice that the probabilities do not add up to one(the probability distribution always have add up to one), which should be fixed by learning about renormalization.
+You may notice that the probabilities do not add up to one(the probability distribution always has to add up to one), which should be fixed by learning about renormalization.
 
 
 #### Normalize Distribution: posterior
 
-After multiplying, the sum of the resulting probabilities is 0.36, which is less than one. It looks like we will need to figure out a way to make sure these probabilities actually add up to one. We turn this back into a probability distribution, by dividing each of these numbers by 0.36. 
+After multiplying, the sum of the resulting probabilities is 0.36, which is less than one. It looks like we will need to figure out a way to make sure these probabilities actually add up to one. We turn this back into a probability distribution, by dividing each probability of the grid cells by 0.36. 
 
 
 <p align="right"> <img src="./img/7.jpg" style="right;" alt=" posterior" width="600" height="400"> </p> 
@@ -102,7 +102,7 @@ The probabilist would also call it posterior distribution of place xi given meas
 
 * "sense" define a function, which is the measurement update and which takes as input the initial distribution p and the measurement Z and all the other global variables.
 
-* "sense" outputs a normalized distribution called "Q" in which Q reflects the normalized product of our input probability and the corresponding pHit or pMiss in accordance to whether these colors.
+* "sense" outputs a normalized distribution called "Q" in which Q reflects the normalized product of our input probability and the corresponding pHit or pMiss in accordance to the colors.
 
 ```python
 p=[0.2, 0.2, 0.2, 0.2, 0.2]
@@ -123,7 +123,7 @@ The outcome as expected: [0.11111111 0.33333333 0.33333333 0.11111111 0.11111111
 
 ## 3. Multiple Measurements
 
-To process any sequence of measurements of any length, Instead of z I am going to make a measurement vector called ‘measurement’, which can have multiple measurements then I modify the code so that it updates the probability based on the number of measurements.
+To process any sequence of measurements of any length, Instead of z I am going to make a measurement vector called ‘measurement’, which can have multiple measurements then I modified the code so that it updates the probability based on the number of measurements.
 
 
 ```python
@@ -155,14 +155,14 @@ print p
 
 In this section, we will still be using the earlier concepts later on and shifting our focus onto what happens to our knowledge of location when our robot starts moving around.
 
-1. Suppose we have a distribution over those cells-- such as below and even though we do not know where the robot is.
-2. The robot moves it moves to the right. In fact, the way we are going to program is we will assume the world is cyclic, so if it drops off the right-most cell it finds itself in the left-most cell. 
-3. Suppose we know the world moved exactly 1 grid cell to the right, including the cyclic motion. After that motion, all these 5 values (the posterior probability) like as step 3 in the following figure.
+1. Suppose we have a distribution such as below and even though we do not know where the robot is.
+2. Assume the world is cyclic, if the robot drops off the right-most cell it finds itself in the left-most cell. 
+3. The robot moves to the right and we know the world moved exactly 1 grid cell to the right, including the cyclic motion. After that motion, all these 5 values (the posterior probability) like as step 3 in the following figure.
 
 
 <p align="right"> <img src="./img/9.jpg" style="right;" alt="  Exact Motion" width="600" height="400"> </p> 
 
-To program this I defined a function "move" with an input distribution p and a motion number "U" where U is the number of grid cells that the robot is moving to the right or to the left and returns the new distribution Q after the move where if U equals zero, Q is the same as p. If U equals 1, all the values are cyclically shifted to the right by 1.If U equals 3, they are cyclically shifted to the right by 3. If U equals -1, they are cyclically shifted to the left.
+To program this, I defined a function "move" with an input distribution p and a motion number "U" where U is the number of grid cells that the robot is moving to the right or to the left and returns the new distribution Q after the move. if U equals zero, Q is the same as p. If U equals 1, all the values are cyclically shifted to the right by 1 and if U equals 3, they are cyclically shifted to the right by 3. If U equals -1, they are cyclically shifted to the left.
 
 
 ```python
@@ -180,17 +180,17 @@ the expected value: [1, 0, 0, 0, 0]
 
 ## 5. Inexact Motion
 
-In this section we are going to talk about inaccurate robot motion. It is really important to model Inexact Motion,because this is the primary reason why localization is hard, because robots are not very accurate and attempts to go U grid cells, but occasionally falls short of its goal or overshoots. For example we are again given 5 grid cells and a robot executes its action(Say U = 2) with high probability correctly, say 0.8, but with 0.1 chance it finds itself short of the intended action and  another 0.1 probability it finds itself overshooting its target.
+In this section we are going to talk about inaccurate robot motion. It is really important to model inexact Motion,because this is the primary reason why localization is hard, because robots are not very accurate and attempts to go U grid cells, but occasionally falls short of its goal or overshoots. For example we are again given 5 grid cells and a robot executes its action(Say U = 2) with high probability correctly, say 0.8, but with 0.1 chance it finds itself short of the intended action and  another 0.1 probability it finds itself overshooting its target.
 
 <p align="right"> <img src="./img/10.jpg" style="right;" alt="  ut inaccurate robot motion" width="600" height="400"> </p> 
 
 
-First, we're now going to look at the mathematical side by an example:
+First, we are now going to look at the mathematical side by an example:
 
-A prior distribution like below is given and we're going to be using the value of U = 2.For the motion model that shifts the robot exactly 2 steps:
+A prior distribution like below is given and we are going to be using the value of U = 2. For the motion model that shifts the robot exactly 2 steps:
 
-* We believe there is a 0.8 chance that  the robot will be in the correct place
-* We assign a 0.1 to the cases where the robot over or under shoots for the motion model that shifts the robot exactly 2 steps
+* We believe there is a 0.8 chance that the robot will be in the correct cell
+* We assign a 0.1 chance to the cases where the robot over or under shoots for the motion model that shifts the robot exactly 2 steps
 
 
 
@@ -201,7 +201,7 @@ As seen, this motion has added some uncertainty to the robot's position:
 
 <p align="right"> <img src="./img/12.jpg" style="right;" alt="  added some uncertainty to the robot's position" width="600" height="400"> </p> 
 
-To modify the move procedure to accommodate these extra probabilities (pExact of 0.8, pOvershoot of 0.1, and pUndershoot of 0.1 )I am going to to add  them into the move function.
+To modify the move procedure to accommodate these extra probabilities (pExact of 0.8, pOvershoot of 0.1, and pUndershoot of 0.1 )I am going to to add them into the move function.
 
 ```python
 p=[0, 1, 0, 0, 0]
@@ -238,7 +238,7 @@ print (move(p, 2))
 
 The expected values: [0.0, 0.0, 0.1, 0.8, 0.1]
 
-By multiply the p value as before for the exact set off by pExact then we add to it two more multiplied by pOvershoot or pUndershoot where we are overshooting by going yet 1 step further than U or undershooting by cutting it short by 1. Then we add these things up and finally append the sum of those to our output probability q. 
+In the code above we multiply the p value as before for the correct cell by pExact, then we add to it two more multiplied by pOvershoot or pUndershoot where we are overshooting by going yet 1 step further than U or undershooting by cutting it short by 1. Then we add these things up and finally append the sum of those to our output probability q. 
 
 To move the robot as much time we want and print out the resulting distribution with the initial distribution p = [0, 1, 0, 0, 0]:
 ```python
@@ -246,6 +246,8 @@ for i in range(n):
     p=move(p, 1)
 print(p)
 ```
+**As the robot continues to move more and more gets uncertain about where it is, eventually it will reach the state of maximal uncertainty: the uniform distribution.**
+
 ## 6. Sense and Move
 
 We talked about measurement updates, and  motion. We called these two routines "sense" and "move." and localization is nothing else but the iteration of "sense" and "move." .There is an initial belief that is tossed into this loop if you. 

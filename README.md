@@ -316,7 +316,7 @@ Motion was a convolution. for each possible location after the motion, we revers
 
 I want to go over the formal definition of localization:
 
-**1. The measurement update function, or "sense:**
+**1. The measurement update function or "sense:**
 
 will lead to something called "Bayes Rule.". It's the most fundamental consideration in probabilistic inference. Suppose x is my grid cell and Z is my measurement. The measurement update seeks to calculate a belief over my location after seeing the measurement.  How is this computed? It turns out that Bayes Rule looks like below
 
@@ -341,5 +341,13 @@ The resulting probability will be:
 
 
 
+**2. Theorem of Total Probability or motion **
 
+look at motion, which will turn out to be something we will call total probability. You remember that we cared about a grid cell "xi" and we asked what is the chance of being in xi after robot motion?  To indicate the after and before, a time index is added (T up X, is an index for time).
+
+The way we find the posterior probability for xi is to go through all possible places from which it could have come, all the different j's. Look at the prior probabilities, multiply it by the probability that I transition from j to i given my motion command, which in this case is go 1 to the right side. 
+
+
+
+<p align="right"> <img src="./img/20.jpg" style="right;" alt=" Theorem of Total Probability" width="500" height="200"> </p> 
 

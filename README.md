@@ -1,11 +1,14 @@
-contents:
-1. Introduction of Localization
-2. Localization
-3. Multiple Measurements
-4. Exact Motion
-5. Inexact Motion
-6. Sense and Move
-7. Localization Summary
+<b>
+ contents:
+ 
+  1. Introduction of Localization
+  2. Localization
+  3. Multiple Measurements
+  4. Exact Motion
+  5. Inexact Motion
+  6. Sense and Move
+  7. Localization Summary
+</b>
 
 
 ## 1. Introduction of Localization
